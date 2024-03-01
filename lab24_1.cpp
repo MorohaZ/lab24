@@ -64,3 +64,32 @@ void List::append(int d){
 }
 
 //Write List::remove() here
+void List::remove(int idx) {
+    if (root == nullptr || idx < 0 || idx >= size) {
+        cout << "Invalid index for removal." << endl;
+        return;
+    }
+
+    Node *current = root;
+    Node *temp;
+
+    // If removing the first element
+    if (idx == 0) {
+        root = current->next;
+        delete current;
+    } else {
+        // Traverse to the node before the one to be removed
+        for (int i = 0; i < idx - 1; i++) {
+            current = current->next;
+        }
+
+        // Save the node to be removed and adjust pointers
+        temp = current->next;
+        current->next = temp->next;
+
+        // Delete the node
+        delete temp;
+    }
+
+    size--;
+}

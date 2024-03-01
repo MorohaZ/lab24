@@ -5,27 +5,57 @@
 using namespace std;
 
 void printList(list<string> s){
-	list<string>::iterator i;
-	for( i = s.begin(); i != s.end(); i++){
-		cout << *i << " ";
-	}		
-	cout << "\n";	
+    list<string>::iterator i;
+    for (i = s.begin(); i != s.end(); i++){
+        cout << *i << " ";
+    }
+    cout << "\n";
 }
 
 int main(){
+
+    list<string> line_up;
+    list<string>::iterator loc;
+
+    line_up.push_back("Alice");
+    line_up.push_back("Bob");
+
+    loc = find(line_up.begin(), line_up.end(), "Bob");
+    line_up.insert(loc, "Oscar");
 	
-	list<string> line_up;
-	list<string>::iterator loc;
 	
-	line_up.push_back("Alice");
-	line_up.push_back("Bob");
+
+    line_up.push_back("Luffy");
+    line_up.push_back("Sanji");
+    line_up.push_back("Nami");
+
 	
-	loc = find(line_up.begin(),line_up.end(),"Bob");
-	line_up.insert(loc,"Oscar");
+
+	for (int i = 0; i < 2; i++) {
+        line_up.pop_front();
+    }
+
 	
-	//Write your code here
+
+    loc = find(line_up.begin(), line_up.end(), "Sanji");
+    line_up.insert(loc, "Narutu");
+
+    line_up.push_front("Prayath");
+
 	
-	printList(line_up);
-		
-	return 0;
+
+    loc = find(line_up.begin(), line_up.end(), "Prayath");
+    line_up.insert(loc, "Tony");
+
+    // Bob changes his mind and leaves the line
+    line_up.remove("Bob");
+
+    // 3 people at the front of the line enter the restroom
+    for (int i = 0; i < 3; i++) {
+        line_up.pop_front();
+    }
+
+    printList(line_up);
+
+    return 0;
 }
